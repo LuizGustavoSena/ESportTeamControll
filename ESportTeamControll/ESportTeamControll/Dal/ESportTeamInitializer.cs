@@ -21,8 +21,17 @@ namespace ESportTeamControll.Dal
                 new Coach{Id = 1, Name = "Gaules", BirthDate = DateTime.Parse("05/10/1973"), Cpf = "1", NickName = "RobertinhoAK"},
                 new Coach{Id = 2, Name = "Fall", BirthDate = DateTime.Parse("07/17/1987"), Cpf = "2", NickName = "F@ll"}
             };
-
             coachs.ForEach(i => context.Coachs.Add(i));
+
+            IEnumerable<Game> games = new Game[]
+            {
+                new Game { Id = 1, Name = "Valorant" },
+                new Game { Id = 2, Name = "Rocket League" },
+                new Game { Id = 3, Name = "Counter-Strike: Global Offensive" }
+            };
+            foreach (var g in games)
+                context.Games.Add(g);
+
             context.SaveChanges();
         }
     }

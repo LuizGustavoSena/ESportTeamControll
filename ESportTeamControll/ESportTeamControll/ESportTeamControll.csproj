@@ -126,6 +126,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CoachController.cs" />
+    <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TeamController.cs" />
     <Compile Include="Dal\ESportTeamContext.cs" />
@@ -147,6 +148,8 @@
     <Compile Include="Services\TeamService.cs" />
     <Compile Include="Services\CoachService.cs" />
     <Compile Include="Services\ICoachService.cs" />
+    <Compile Include="Services\GameService.cs" />
+    <Compile Include="Services\IGameService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -194,6 +197,11 @@
     <Content Include="Views\Coach\Edit.cshtml" />
     <Content Include="Views\Coach\Details.cshtml" />
     <Content Include="Views\Coach\Delete.cshtml" />
+    <Content Include="Views\Game\Index.cshtml" />
+    <Content Include="Views\Game\Create.cshtml" />
+    <Content Include="Views\Game\Edit.cshtml" />
+    <Content Include="Views\Game\Details.cshtml" />
+    <Content Include="Views\Game\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
