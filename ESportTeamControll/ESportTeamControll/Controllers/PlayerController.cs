@@ -1,5 +1,4 @@
-﻿using ESportTeamControll.Dal;
-using ESportTeamControll.Models;
+﻿using ESportTeamControll.Models;
 using ESportTeamControll.Services;
 using System;
 using System.Collections.Generic;
@@ -9,11 +8,10 @@ using System.Web.Mvc;
 
 namespace ESportTeamControll.Controllers
 {
-    public class TeamController : Controller
+    public class PlayerController : Controller
     {
-        // GET: Team
-        private ITeamService service = new TeamService();
-        
+        // GET: Player
+        private IPlayerService service = new PlayerService();
 
         #region Index
         public ActionResult Index()
@@ -25,19 +23,18 @@ namespace ESportTeamControll.Controllers
         #region Create
         public ActionResult Create()
         {
-            ViewBag.TeamList = service.ReturnTeams();
             return View();
         }
 
         [HttpPost][ValidateAntiForgeryToken]
-        public ActionResult Create (Team teams)
+        public ActionResult Create(Player players)
         {
             if (ModelState.IsValid)
             {
-                service.Adiciona(teams);
+                service.Adiciona(players);
                 return RedirectToAction("Index");
             }
-            return View(teams);
+            return View(players);
         }
         #endregion
 
@@ -47,20 +44,19 @@ namespace ESportTeamControll.Controllers
             return View(service.ProcuraId(id));
         }
 
-        [HttpPost] [ValidateAntiForgeryToken]
-        public ActionResult Edit(Team teams)
+        [HttpPost][ValidateAntiForgeryToken]
+        public ActionResult Edit(Player players)
         {
             if (ModelState.IsValid)
             {
-                service.Edit(teams);
+                service.Edit(players);
                 return RedirectToAction("Index");
             }
-            return View(teams);
-            
+            return View(players);
         }
         #endregion
 
-        #region details
+        #region Details
         public ActionResult Details(int id)
         {
             return View(service.ProcuraId(id));
@@ -76,11 +72,9 @@ namespace ESportTeamControll.Controllers
         [HttpPost, ActionName("Delete")] [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirm(int id)
         {
-            service.RemoverTime(id);
+            service.RemoverPlayer(id);
             return RedirectToAction("Index");
         }
         #endregion
-
-
     }
 }
