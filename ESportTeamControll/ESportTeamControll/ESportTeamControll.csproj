@@ -128,9 +128,8 @@
     <Compile Include="Controllers\CoachController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TeamController.cs" />
-    <Compile Include="Dal\CoachInitializer.cs" />
     <Compile Include="Dal\ESportTeamContext.cs" />
-    <Compile Include="Dal\TeamInitializer.cs" />
+    <Compile Include="Dal\ESportTeamInitializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
