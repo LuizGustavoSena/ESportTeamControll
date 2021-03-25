@@ -18,6 +18,6 @@ namespace ESportTeamControll.Services
 
         void Edit(Team teams);
 
-        IEnumerable<SelectListItem> ReturnTeams();
+        
     }
 }

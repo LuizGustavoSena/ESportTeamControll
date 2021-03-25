@@ -1,5 +1,6 @@
 ﻿using ESportTeamControll.Models;
 using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace ESportTeamControll.Services
 {
@@ -16,5 +17,9 @@ namespace ESportTeamControll.Services
         void Edit(Player players);
 
         void RemoverPlayer(int id);
+
+        Team ProcuraIdTeam(int id);
+
+        IEnumerable<SelectListItem> ReturnTeams();
     }
 }

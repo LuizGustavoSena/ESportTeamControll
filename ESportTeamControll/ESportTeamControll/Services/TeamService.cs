@@ -43,10 +43,7 @@ namespace ESportTeamControll.Services
             teamUpdate.Camps = teams.Camps;
             SaveChanges();
         }
-        public IEnumerable<SelectListItem> ReturnTeams()
-        {
-            return new SelectList(tc.Teams, "Id","Name");
-        }
+       
             
 
     }

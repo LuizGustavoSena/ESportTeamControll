@@ -1,4 +1,5 @@
-﻿using ESportTeamControll.Models;
+﻿using ESportTeamControll.Dal;
+using ESportTeamControll.Models;
 using ESportTeamControll.Services;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,8 @@ namespace ESportTeamControll.Controllers
     {
         // GET: Player
         private IPlayerService service = new PlayerService();
+        
+
 
         #region Index
         public ActionResult Index()
@@ -23,14 +26,16 @@ namespace ESportTeamControll.Controllers
         #region Create
         public ActionResult Create()
         {
+            ViewBag.TeamList = service.ReturnTeams(); ;
             return View();
         }
 
-        [HttpPost][ValidateAntiForgeryToken]
-        public ActionResult Create(Player players)
+        [HttpPost] [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Id,Name,Cpf,BirthDate,NickName,Function, Team")] Player players)
         {
             if (ModelState.IsValid)
             {
+                players.Team = service.ProcuraIdTeam(players.Team.Id);
                 service.Adiciona(players);
                 return RedirectToAction("Index");
             }

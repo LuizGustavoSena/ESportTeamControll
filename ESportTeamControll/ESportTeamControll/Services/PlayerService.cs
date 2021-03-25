@@ -4,12 +4,23 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace ESportTeamControll.Services
 {
     public class PlayerService : IPlayerService
     {
         private ESportTeamContext tc = new ESportTeamContext();
+        public IEnumerable<SelectListItem> ReturnTeams()
+        {
+            return new SelectList(tc.Teams, "Id", "Name");
+        }
+
+        public Team ProcuraIdTeam(int id)
+        {
+            return tc.Teams.First(x => x.Id == id);
+        }
+
         public List<Player> Retorna()
         {
             return tc.Players.ToList();
@@ -30,6 +41,8 @@ namespace ESportTeamControll.Services
         {
             return tc.Players.First(x => x.Id == id);
         }
+
+
 
         public void Edit(Player players)
         {

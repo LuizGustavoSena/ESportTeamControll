@@ -13,7 +13,6 @@ namespace ESportTeamControll.Controllers
     {
         // GET: Team
         private ITeamService service = new TeamService();
-        
 
         #region Index
         public ActionResult Index()
@@ -25,7 +24,6 @@ namespace ESportTeamControll.Controllers
         #region Create
         public ActionResult Create()
         {
-            ViewBag.TeamList = service.ReturnTeams();
             return View();
         }
 
