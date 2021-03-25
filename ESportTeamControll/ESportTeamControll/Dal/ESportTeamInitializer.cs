@@ -9,7 +9,7 @@ namespace ESportTeamControll.Dal
 {
     public class ESportTeamInitializer : DropCreateDatabaseIfModelChanges<ESportTeamContext>
     {
-        protected override void Seed(ESportTeamContext context)
+        /*protected override void Seed(ESportTeamContext context)
         {
             var teams = new List<Team>
             {
@@ -39,6 +39,6 @@ namespace ESportTeamControll.Dal
             camps.ForEach(x => context.Camps.Add(x));
 
             context.SaveChanges();
-        }
+        }*/
     }
 }
