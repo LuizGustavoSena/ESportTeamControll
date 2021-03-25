@@ -32,6 +32,12 @@ namespace ESportTeamControll.Dal
             foreach (var g in games)
                 context.Games.Add(g);
 
+            var camps = new List<Camp>{
+                new Camp { Id = 1, Name = "CB lol", StarDate = DateTime.Parse("04/15/2021"), EndDate = DateTime.Parse("04/18/2021")},
+                new Camp { Id = 2, Name = "CS League", StarDate = DateTime.Parse("06/20/2021"), EndDate = DateTime.Parse("06/22/2021")}
+            };
+            camps.ForEach(x => context.Camps.Add(x));
+
             context.SaveChanges();
         }
     }
