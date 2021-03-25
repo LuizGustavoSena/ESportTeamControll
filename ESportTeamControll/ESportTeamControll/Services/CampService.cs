@@ -2,8 +2,10 @@
 using ESportTeamControll.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace ESportTeamControll.Services
 {
@@ -18,6 +20,7 @@ namespace ESportTeamControll.Services
 
         public void Insert(Camp camp)
         {
+            camp.Team = _db.Teams.First(x => x.Id == camp.Team.Id);
             _db.Camps.Add(camp);
             _db.SaveChanges();
         }
@@ -33,14 +36,25 @@ namespace ESportTeamControll.Services
             campUp.Name = camp.Name;
             campUp.StarDate = camp.StarDate;
             campUp.EndDate = camp.EndDate;
+            campUp.Team = _db.Teams.First(x => x.Id == camp.Team.Id);
             _db.SaveChanges();
         }
 
         public void Delete(int id)
         {
-            var campDe = Search(id);
-            _db.Camps.Remove(campDe);
+            _db.Camps.Remove(Search(id));
             _db.SaveChanges();
         }
+
+        public IEnumerable<SelectListItem> ReturnTeams()
+        {
+            return new SelectList(_db.Teams, "Id", "Name");
+        }
+
+        public IEnumerable<SelectListItem> ReturnTeams(int id)
+        {
+            return new SelectList(_db.Teams, "Id", "Name", id);
+        }
+
     }
 }
