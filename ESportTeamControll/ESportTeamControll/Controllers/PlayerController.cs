@@ -32,8 +32,7 @@ namespace ESportTeamControll.Controllers
         public ActionResult Create([Bind(Include = "Id,Name,Cpf,BirthDate,NickName,Function, Team")] Player players)
         {
             if (ModelState.IsValid)
-            {
-                players.Team = service.ProcuraIdTeam(players.Team.Id);
+            {                
                 service.Adiciona(players);
                 return RedirectToAction("Index");
             }
@@ -54,8 +53,7 @@ namespace ESportTeamControll.Controllers
             
             if (ModelState.IsValid)
             {
-                var team = service.ProcuraIdTeam(players.Team.Id);
-                service.Edit(players, team);
+                service.Edit(players);
                 return RedirectToAction("Index");
             }
             return View(players);
@@ -65,7 +63,6 @@ namespace ESportTeamControll.Controllers
         #region Details
         public ActionResult Details(int id)
         {
-
             return View(service.ProcuraId(id));
         }
         #endregion

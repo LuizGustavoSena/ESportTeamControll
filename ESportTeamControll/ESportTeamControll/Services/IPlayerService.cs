@@ -14,7 +14,7 @@ namespace ESportTeamControll.Services
 
         Player ProcuraId(int id);
 
-        void Edit(Player players, Team team);
+        void Edit(Player players);
 
         void RemoverPlayer(int id);
 

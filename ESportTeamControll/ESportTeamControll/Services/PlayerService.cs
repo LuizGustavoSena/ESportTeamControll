@@ -28,6 +28,7 @@ namespace ESportTeamControll.Services
 
         public void Adiciona(Player players)
         {
+            players.Team = ProcuraIdTeam(players.Team.Id);
             tc.Players.Add(players);
             SaveChanges();
         }
@@ -42,12 +43,12 @@ namespace ESportTeamControll.Services
             return tc.Players.First(x => x.Id == id);
         }
 
-        public void Edit(Player players, Team team)
+        public void Edit(Player players)
         {
             Player playerUpdate = ProcuraId(players.Id);
             playerUpdate.Function = players.Function;
             playerUpdate.NickName = players.NickName;
-            playerUpdate.Team = team;
+            playerUpdate.Team = ProcuraIdTeam(players.Team.Id);
             SaveChanges();
             
         }
@@ -57,5 +58,6 @@ namespace ESportTeamControll.Services
             tc.Players.Remove(ProcuraId(id));
             SaveChanges();
         }
+
     }
 }
