@@ -131,6 +131,7 @@
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PlayerController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\TeamController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Dal\ESportTeamContext.cs" />
@@ -153,9 +154,11 @@
     <Compile Include="Services\ICampService.cs" />
     <Compile Include="Services\EnterpriseService.cs" />
     <Compile Include="Services\IEnterpriseService.cs" />
+    <Compile Include="Services\ILoginService.cs" />
     <Compile Include="Services\ITeamService.cs" />
     <Compile Include="Services\IUserService.cs" />
     <Compile Include="Services\PlayerService.cs" />
+    <Compile Include="Services\LoginService.cs" />
     <Compile Include="Services\TeamService.cs" />
     <Compile Include="Services\CoachService.cs" />
     <Compile Include="Services\ICoachService.cs" />
@@ -233,6 +236,7 @@
     <Content Include="Views\Enterprise\Edit.cshtml" />
     <Content Include="Views\Enterprise\Details.cshtml" />
     <Content Include="Views\Enterprise\Delete.cshtml" />
+    <Content Include="Views\Login\SignIn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -17,6 +17,7 @@ namespace ESportTeamControll.Controllers
         #region Index
         public ActionResult Index()
         {
+            var email = Session["userEmail"].ToString();
             return View(service.Retorna());
         }
         #endregion

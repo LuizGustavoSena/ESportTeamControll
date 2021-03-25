@@ -1,9 +1,5 @@
 ﻿using ESportTeamControll.Models;
 using ESportTeamControll.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ESportTeamControll.Controllers
@@ -26,7 +22,7 @@ namespace ESportTeamControll.Controllers
             {
                 ent.User = user;
                 _service.Create(ent);
-                return RedirectToAction("../Team/Index");
+                return RedirectToAction("SignIn", "Login");
             }
             return View(ent);
         }

@@ -12,7 +12,7 @@ namespace ESportTeamControll
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Login", action = "SignIn", id = UrlParameter.Optional }
             );
         }
     }
