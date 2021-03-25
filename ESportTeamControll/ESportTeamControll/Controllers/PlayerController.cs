@@ -14,11 +14,9 @@ namespace ESportTeamControll.Controllers
         // GET: Player
         private IPlayerService service = new PlayerService();
         
-
-
         #region Index
         public ActionResult Index()
-        {
+        {            
             return View(service.Retorna());
         }
         #endregion
@@ -26,7 +24,7 @@ namespace ESportTeamControll.Controllers
         #region Create
         public ActionResult Create()
         {
-            ViewBag.TeamList = service.ReturnTeams(); ;
+            ViewBag.TeamList = service.ReturnTeams(); 
             return View();
         }
 
@@ -46,15 +44,18 @@ namespace ESportTeamControll.Controllers
         #region Edit
         public ActionResult Edit(int id)
         {
+            ViewBag.TeamList = service.ReturnTeams(); 
             return View(service.ProcuraId(id));
         }
 
         [HttpPost][ValidateAntiForgeryToken]
-        public ActionResult Edit(Player players)
+        public ActionResult Edit([Bind(Include = "Id,NickName,Function, Team")] Player players)
         {
+            
             if (ModelState.IsValid)
             {
-                service.Edit(players);
+                var team = service.ProcuraIdTeam(players.Team.Id);
+                service.Edit(players, team);
                 return RedirectToAction("Index");
             }
             return View(players);
@@ -64,6 +65,7 @@ namespace ESportTeamControll.Controllers
         #region Details
         public ActionResult Details(int id)
         {
+
             return View(service.ProcuraId(id));
         }
         #endregion

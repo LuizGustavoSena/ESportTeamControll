@@ -42,13 +42,14 @@ namespace ESportTeamControll.Services
             return tc.Players.First(x => x.Id == id);
         }
 
-
-
-        public void Edit(Player players)
+        public void Edit(Player players, Team team)
         {
             Player playerUpdate = ProcuraId(players.Id);
-            playerUpdate.Name = players.Name;
             playerUpdate.Function = players.Function;
+            playerUpdate.NickName = players.NickName;
+            playerUpdate.Team = team;
+            SaveChanges();
+            
         }
 
         public void RemoverPlayer(int id)
