@@ -9,7 +9,7 @@ namespace ESportTeamControll.Models
         public string Name { get; set; }
         public DateTime StarDate { get; set; }
         public DateTime EndDate { get; set; }
-        public virtual ICollection<Team> Teams { get; set; }
+        public virtual /*ICollection<*/Team/*>*/ Team { get; set; }
 
     }
 }

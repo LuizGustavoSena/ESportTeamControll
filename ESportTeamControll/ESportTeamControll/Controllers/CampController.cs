@@ -1,4 +1,5 @@
-﻿using ESportTeamControll.Models;
+﻿using ESportTeamControll.Dal;
+using ESportTeamControll.Models;
 using ESportTeamControll.Services;
 using System;
 using System.Collections.Generic;
@@ -19,12 +20,13 @@ namespace ESportTeamControll.Controllers
 
         public ActionResult Create()
         {
+            ViewBag.TeamList = _service.ReturnTeams();
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Camp camp)
+        public ActionResult Create([Bind(Include = "Id, Name, StarDate, EndDate, Team")] Camp camp)
         {
             if (ModelState.IsValid)
             {
@@ -36,12 +38,14 @@ namespace ESportTeamControll.Controllers
 
         public ActionResult Edit(int id)
         {
-            return View(_service.Search(id));
+            var camp = _service.Search(id);
+            ViewBag.TeamList = _service.ReturnTeams(camp.Team.Id);
+            return View(camp);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Camp camp)
+        public ActionResult Edit([Bind(Include = "Id, Name, StarDate, EndDate, Team")] Camp camp)
         {
             if (ModelState.IsValid)
             {

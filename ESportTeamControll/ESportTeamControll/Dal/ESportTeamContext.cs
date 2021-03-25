@@ -16,6 +16,9 @@ namespace ESportTeamControll.Dal
         public DbSet<Player> Players { get; set; } 
         public DbSet<Sponsor> Sponsors { get; set; } 
         public DbSet<Team> Teams { get; set; } 
-        public DbSet<User> Users { get; set; } 
+        public DbSet<User> Users { get; set; }
+
+
+
     }
 }

@@ -1,5 +1,7 @@
 ﻿using ESportTeamControll.Models;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Web.Mvc;
 
 namespace ESportTeamControll.Services
 {
@@ -10,5 +12,7 @@ namespace ESportTeamControll.Services
         Camp Search(int id);
         void Update(Camp camp);
         void Delete(int id);
+        IEnumerable<SelectListItem> ReturnTeams();
+        IEnumerable<SelectListItem> ReturnTeams(int id);
     }
 }

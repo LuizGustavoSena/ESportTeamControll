@@ -9,6 +9,6 @@ namespace ESportTeamControll.Models
     {
         public string NickName { get; set; }
         public string Function { get; set; }
-        public Team Team { get; set; }
+        public virtual Team Team { get; set; }
     }
 }
