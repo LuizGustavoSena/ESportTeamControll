@@ -1,5 +1,6 @@
 ﻿using ESportTeamControll.Models;
 using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace ESportTeamControll.Services
 {
@@ -16,5 +17,7 @@ namespace ESportTeamControll.Services
         void RemoverTime(int id);
 
         void Edit(Team teams);
+
+        
     }
 }
