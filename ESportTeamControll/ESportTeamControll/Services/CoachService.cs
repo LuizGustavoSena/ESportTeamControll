@@ -16,6 +16,7 @@ namespace ESportTeamControll.Services
 
         public void Insert(Coach coach)
         {
+            coach.Available = true;
             _db.Coachs.Add(coach);
             _db.SaveChanges();
         }
