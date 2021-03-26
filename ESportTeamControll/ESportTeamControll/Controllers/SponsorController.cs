@@ -56,18 +56,9 @@ namespace ESportTeamControll.Controllers
         [HttpPost][ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include ="Id,Name")] Sponsor sponsors, string[] selectedTeams)
         {
-            sponsors.Teams = new List<Team>();            
-
-            if (selectedTeams != null)
-            {
-                foreach (var team in selectedTeams)
-                {
-                    sponsors.Teams.Add(service.ProcuraIdTeam(int.Parse(team)));
-                }
-            }
             if (ModelState.IsValid)
             {
-                service.Edit(sponsors);
+                service.Edit(sponsors, selectedTeams);
                 return RedirectToAction("Index");
             }
             return View(sponsors);

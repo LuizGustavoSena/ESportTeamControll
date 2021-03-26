@@ -2,6 +2,7 @@
 using ESportTeamControll.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -34,7 +35,7 @@ namespace ESportTeamControll.Services
 
         public Sponsor ProcuraId(int id)
         {
-            return tc.Sponsors.First(x => x.Id == id);
+            return tc.Sponsors.Include(x => x.Teams).First(x => x.Id == id);
         }
 
         public void RemoverSponsor(int id)
@@ -42,11 +43,19 @@ namespace ESportTeamControll.Services
             tc.Sponsors.Remove(ProcuraId(id));
             SaveChanges(); 
         }
-        public void Edit(Sponsor sponsor)
+        public void Edit(Sponsor sponsors, string[] selectedTeams)
         {
-            Sponsor sponsorUpdate = ProcuraId(sponsor.Id);
-            sponsorUpdate.Name = sponsor.Name;
-            sponsorUpdate.Teams = sponsor.Teams;
+            Sponsor sponsorUpdate = ProcuraId(sponsors.Id);
+            sponsorUpdate.Name = sponsors.Name;
+            sponsorUpdate.Teams = new List<Team>();
+
+            if (selectedTeams != null)
+            {
+                foreach (var team in selectedTeams)
+                {
+                    sponsorUpdate.Teams.Add(ProcuraIdTeam(int.Parse(team)));
+                }
+            }
             SaveChanges();
         }
 

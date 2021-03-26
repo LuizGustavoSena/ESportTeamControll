@@ -22,11 +22,13 @@
             @Html.DisplayNameFor(model => model.Teams)
         </dt>
 
-        @{ 
+        @{
             foreach (var item in ViewBag.ListTeam)
             {
                 var nome = item.Name;
-                <dd>@nome</dd>
+                <dd>
+                    <li>@nome</li>
+                </dd>
             }
         }
 

@@ -10,7 +10,7 @@ namespace ESportTeamControll.Services
         void Adiciona(Sponsor sponsors);        
         Sponsor ProcuraId(int id);
         void RemoverSponsor(int id);
-        void Edit(Sponsor sponsor);
+        void Edit(Sponsor sponsors, string[] selectedTeams);
 
         List<Team> ReturnTeams();
         Team ProcuraIdTeam(int id);
