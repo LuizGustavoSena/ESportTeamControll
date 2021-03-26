@@ -10,9 +10,9 @@ namespace ESportTeamControll.Services
 
 		public bool UserValidate(User user)
 		{
-			var auxUser = _db.Users.First( u => u.Email == user.Email);
+			var auxUser = _db.Users.FirstOrDefault(u => u.Email == user.Email);
 
-			return (auxUser.Password == user.Password) ? true : false;
+			return (auxUser != null && auxUser.Password == user.Password) ? true : false;
 		}
 	}
 }
