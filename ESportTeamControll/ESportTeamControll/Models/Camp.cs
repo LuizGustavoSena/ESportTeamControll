@@ -10,6 +10,5 @@ namespace ESportTeamControll.Models
         public DateTime StarDate { get; set; }
         public DateTime EndDate { get; set; }
         public virtual ICollection<Team> Teams { get; set; }
-
     }
 }
