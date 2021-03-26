@@ -8,11 +8,12 @@ namespace ESportTeamControll.Services
     public interface ICampService
     {
         List<Camp> GetAll();
-        void Insert(Camp camp);
+        void Insert(Camp camp, string[] selectedTeams);
+        Team GetTeam(int id);
         Camp Search(int id);
-        void Update(Camp camp);
+        void Update(Camp camp, string[] selectedTeams);
         void Delete(int id);
-        IEnumerable<SelectListItem> ReturnTeams();
+        List<Team> ReturnTeams();
         IEnumerable<SelectListItem> ReturnTeams(int id);
     }
 }

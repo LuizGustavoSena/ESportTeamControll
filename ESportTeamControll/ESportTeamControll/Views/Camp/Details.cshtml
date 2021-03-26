@@ -35,13 +35,14 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Team)
+            @Html.DisplayNameFor(model => model.Teams)
         </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Team.Name)
-        </dd>
-
+            @{
+                foreach (var i in ViewBag.TeamList)
+                {
+                    <dd><li>@i.Name</li></dd>
+                }
+            }
     </dl>
 </div>
 <p>
