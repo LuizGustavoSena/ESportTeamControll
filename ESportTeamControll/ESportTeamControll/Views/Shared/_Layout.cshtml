@@ -8,17 +8,18 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top" @(((string)Session["userEmail"] == null) ? "style= visibility: hidden" : "style = visibility: visible")>
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("ESport Team Control", "Index", "Team", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				@Html.ActionLink("ESport Team Control", "Index", "Team", new { area = "" }, new { @class = "navbar-brand" })
+			</div>
             <div class="navbar-collapse collapse">
+                
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Games", "Index", "Game")</li>
                     <li>@Html.ActionLink("Coachs", "Index", "Coach")</li>
@@ -28,6 +29,7 @@
                     <li>@Html.ActionLink("Championship", "Index", "Camp")</li>
                     <li>@Html.ActionLink("User", "Index", "Home")</li>
                 </ul>
+
             </div>
         </div>
     </div>
