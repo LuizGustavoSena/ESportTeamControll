@@ -66,6 +66,7 @@ namespace ESportTeamControll.Controllers
         #region details
         public ActionResult Details(int id)
         {
+            ViewBag.PlayerList = service.GetPlayers(id);
             return View(service.ProcuraId(id));
         }
         #endregion

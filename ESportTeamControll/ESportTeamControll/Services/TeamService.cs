@@ -19,6 +19,10 @@ namespace ESportTeamControll.Services
         {
             return new SelectList(tc.Games, "Id", "Name");
         }
+        public IEnumerable<SelectListItem> GetPlayers(int id)
+        {
+            return new SelectList(tc.Players.Where(x => x.Team.Id == id), "Id", "Name");
+        }
         public IEnumerable<SelectListItem> GetCoachs()
         {
             return new SelectList(tc.Coachs.Where(x => x.Available == true), "Id", "Name");
@@ -66,5 +70,6 @@ namespace ESportTeamControll.Services
             team.Coach.Available = true;
             SaveChanges();
         }
+
     }
 }

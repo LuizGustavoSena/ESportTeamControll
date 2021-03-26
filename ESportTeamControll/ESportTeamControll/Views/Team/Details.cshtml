@@ -34,6 +34,15 @@
             @Html.DisplayFor(model => model.Coach.Name)
         </dd>
 
+        <dt>
+            Players
+        </dt>
+        @{
+            foreach (var i in ViewBag.PlayerList)
+            {
+                <dd><li>@i.Text</li></dd>
+            }
+        }
     </dl>
 </div>
 <p>
