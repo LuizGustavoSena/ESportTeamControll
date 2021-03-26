@@ -16,7 +16,23 @@
 
         <dd>
             @Html.DisplayFor(model => model.Name)
-        </dd>      
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Game)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Game.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Coach)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Coach.Name)
+        </dd>
 
     </dl>
 </div>

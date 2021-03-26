@@ -10,9 +10,15 @@ namespace ESportTeamControll.Services
 
         void Adiciona(Team teams);
 
+        IEnumerable<SelectListItem> GetGames();
+
+        IEnumerable<SelectListItem> GetCoachs();
+
         void SaveChanges();
 
         Team ProcuraId(int id);
+
+        void LimpaCoach(int id);
 
         void RemoverTime(int id);
 

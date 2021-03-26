@@ -17,7 +17,6 @@ namespace ESportTeamControll.Controllers
         #region Index
         public ActionResult Index()
         {
-            var email = Session["userEmail"].ToString();
             return View(service.Retorna());
         }
         #endregion
@@ -25,11 +24,13 @@ namespace ESportTeamControll.Controllers
         #region Create
         public ActionResult Create()
         {
+            ViewBag.GameList = service.GetGames();
+            ViewBag.CoachList = service.GetCoachs();
             return View();
         }
 
         [HttpPost][ValidateAntiForgeryToken]
-        public ActionResult Create (Team teams)
+        public ActionResult Create ([Bind(Include = "Id, Name, Enterprise, Game, Coach, Camps, Sponsors")] Team teams)
         {
             if (ModelState.IsValid)
             {
@@ -43,11 +44,14 @@ namespace ESportTeamControll.Controllers
         #region Edit
         public ActionResult Edit(int id)
         {
+            ViewBag.GameList = service.GetGames();
+            ViewBag.CoachList = service.GetCoachs();
+            service.LimpaCoach(id);
             return View(service.ProcuraId(id));
         }
 
         [HttpPost] [ValidateAntiForgeryToken]
-        public ActionResult Edit(Team teams)
+        public ActionResult Edit([Bind(Include = "Id, Name, Enterprise, Game, Coach, Camps, Sponsors")] Team teams)
         {
             if (ModelState.IsValid)
             {

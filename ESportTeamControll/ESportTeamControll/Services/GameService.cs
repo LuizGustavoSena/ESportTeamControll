@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace ESportTeamControll.Services
 {
@@ -15,7 +16,6 @@ namespace ESportTeamControll.Services
 		{
 			return db.Games.ToArray();
 		}
-
 		public Game GetById(int id)
 		{
 			return db.Games.First( g => g.Id == id);
