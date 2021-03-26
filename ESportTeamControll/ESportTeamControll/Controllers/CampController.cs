@@ -15,6 +15,7 @@ namespace ESportTeamControll.Controllers
         // GET: Camp
         public ActionResult Index()
         {
+            //ViewBag.TeamsList = _service.ReturnTeams();
             return View(_service.GetAll());
         }
 
@@ -26,11 +27,11 @@ namespace ESportTeamControll.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id, Name, StarDate, EndDate, Team")] Camp camp)
+        public ActionResult Create([Bind(Include = "Id, Name, StarDate, EndDate, Team")] Camp camp, string[] selectedTeams)
         {
             if (ModelState.IsValid)
             {
-                _service.Insert(camp);
+                _service.Insert(camp, selectedTeams);
                 return RedirectToAction("Index");
             }
             return View(camp);
@@ -38,18 +39,17 @@ namespace ESportTeamControll.Controllers
 
         public ActionResult Edit(int id)
         {
-            var camp = _service.Search(id);
-            ViewBag.TeamList = _service.ReturnTeams(camp.Team.Id);
-            return View(camp);
+            ViewBag.TeamList = _service.ReturnTeams();
+            return View(_service.Search(id));
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id, Name, StarDate, EndDate, Team")] Camp camp)
+        public ActionResult Edit([Bind(Include = "Id, Name, StarDate, EndDate, Teams")] Camp camp, string[] selectedTeams)
         {
             if (ModelState.IsValid)
             {
-                _service.Update(camp);
+                _service.Update(camp, selectedTeams);
                 return RedirectToAction("Index");
             }
             return View(camp);
@@ -57,7 +57,9 @@ namespace ESportTeamControll.Controllers
 
         public ActionResult Details(int id)
         {
-            return View(_service.Search(id));
+            var camp = _service.Search(id);
+            ViewBag.TeamList = camp.Teams.ToList();
+            return View(camp);
         }
 
         public ActionResult Delete(int id)

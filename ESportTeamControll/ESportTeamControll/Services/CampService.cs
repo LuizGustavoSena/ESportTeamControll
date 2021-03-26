@@ -17,44 +17,58 @@ namespace ESportTeamControll.Services
         {
             return _db.Camps.ToList();
         }
-
-        public void Insert(Camp camp)
+        public Team GetTeam(int id)
         {
-            camp.Team = _db.Teams.First(x => x.Id == camp.Team.Id);
+            return _db.Teams.First(x => x.Id == id);
+        }
+        public void Insert(Camp camp, string[] selectedTeams)
+        {
+            if (selectedTeams != null)
+            {
+                camp.Teams = new List<Team>();
+                foreach (var team in selectedTeams)
+                {
+                    camp.Teams.Add(GetTeam(int.Parse(team)));
+                }
+            }
+
             _db.Camps.Add(camp);
             _db.SaveChanges();
         }
-
-        public Camp Search(int id)
-        {
-            return _db.Camps.First(i => i.Id == id);
-        }
-
-        public void Update(Camp camp)
+        public void Update(Camp camp, string[] selectedTeams)
         {
             var campUp = Search(camp.Id);
             campUp.Name = camp.Name;
             campUp.StarDate = camp.StarDate;
             campUp.EndDate = camp.EndDate;
-            campUp.Team = _db.Teams.First(x => x.Id == camp.Team.Id);
+
+            campUp.Teams = new List<Team>();
+            if (selectedTeams != null)
+            {
+                foreach (var team in selectedTeams)
+                {
+                    campUp.Teams.Add(GetTeam(int.Parse(team)));
+                }
+            }
             _db.SaveChanges();
         }
-
+        public Camp Search(int id)
+        {
+            return _db.Camps.Include(x => x.Teams).First(i => i.Id == id);
+        }
         public void Delete(int id)
         {
             _db.Camps.Remove(Search(id));
             _db.SaveChanges();
         }
-
-        public IEnumerable<SelectListItem> ReturnTeams()
+        public List<Team> ReturnTeams()
         {
-            return new SelectList(_db.Teams, "Id", "Name");
+            return _db.Teams.ToList();
         }
-
         public IEnumerable<SelectListItem> ReturnTeams(int id)
         {
-            return new SelectList(_db.Teams, "Id", "Name", id);
+            var teste = new SelectList(_db.Teams, "Id", "Name", id);
+            return teste;
         }
-
     }
 }

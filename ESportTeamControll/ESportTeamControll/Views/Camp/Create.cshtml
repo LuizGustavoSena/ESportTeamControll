@@ -40,10 +40,17 @@
     </div>
     
     <div class="form-group">
-        @Html.LabelFor(model => model.Team, "TeamList", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.Teams, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-           @Html.DropDownListFor(model => model.Team.Id, (IEnumerable<SelectListItem>)ViewData["TeamList"], "--Select--", htmlAttributes: new { @class = "form-control" })
-           @Html.ValidationMessageFor(model => model, "", new { @class = "text-danger" })
+
+            @{
+                foreach (var i in ViewBag.TeamList)
+                {
+                    <input type="checkbox" name="selectedTeams" value="@i.Id"/>
+                    @i.Name
+                    <br/>
+                }
+            }
         </div>
     </div>
     
