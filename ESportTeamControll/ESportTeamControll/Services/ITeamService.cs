@@ -6,9 +6,9 @@ namespace ESportTeamControll.Services
 {
     public interface ITeamService
     {
-        List<Team> Retorna();
+        List<Team> Retorna(int entId);
 
-        void Adiciona(Team teams);
+        void Adiciona(Team teams, int entId);
 
         IEnumerable<SelectListItem> GetGames();
 

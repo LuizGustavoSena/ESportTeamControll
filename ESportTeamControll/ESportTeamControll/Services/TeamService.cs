@@ -10,9 +10,9 @@ namespace ESportTeamControll.Services
     public class TeamService : ITeamService
     {
         private ESportTeamContext tc = new ESportTeamContext();
-        public List<Team> Retorna()
+        public List<Team> Retorna(int entId)
         {
-            return tc.Teams.ToList();
+            return tc.Teams.Where( t => t.Enterprise.Id == entId).ToList();
         }
 
         public IEnumerable<SelectListItem> GetGames()
@@ -27,12 +27,14 @@ namespace ESportTeamControll.Services
         {
             return new SelectList(tc.Coachs.Where(x => x.Available == true), "Id", "Name");
         }
-        public void Adiciona(Team teams)
+        public void Adiciona(Team teams, int entId)
         {
             var coachUp = tc.Coachs.First(x => x.Id == teams.Coach.Id);
+            var ent = tc.Enterprises.First( e => e.Id == entId);
             coachUp.Available = false;
             teams.Game = tc.Games.First(x => x.Id == teams.Game.Id);
             teams.Coach = coachUp;
+            teams.Enterprise = ent;
             tc.Teams.Add(teams);
             SaveChanges();
         }

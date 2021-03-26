@@ -8,6 +8,8 @@ namespace ESportTeamControll.Services
 {
 	public interface ILoginService
 	{
-		bool UserValidate(User user);
+		int UserValidate(User user);
+
+		int GetEnterpriseId(int userId);
 	}
 }

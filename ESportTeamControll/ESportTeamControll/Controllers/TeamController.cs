@@ -17,7 +17,8 @@ namespace ESportTeamControll.Controllers
         #region Index
         public ActionResult Index()
         {
-            return View(service.Retorna());
+            var entId = Session["enterpriseId"];
+            return View(service.Retorna((int)entId));
         }
         #endregion
 
@@ -34,7 +35,8 @@ namespace ESportTeamControll.Controllers
         {
             if (ModelState.IsValid)
             {
-                service.Adiciona(teams);
+                var entId = Session["enterpriseId"];
+                service.Adiciona(teams, (int)entId);
                 return RedirectToAction("Index");
             }
             return View(teams);
