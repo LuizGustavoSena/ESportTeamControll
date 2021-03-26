@@ -14,6 +14,8 @@ namespace ESportTeamControll.Services
 
         IEnumerable<SelectListItem> GetCoachs();
 
+        IEnumerable<SelectListItem> GetPlayers(int id);
+
         void SaveChanges();
 
         Team ProcuraId(int id);
