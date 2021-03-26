@@ -22,7 +22,7 @@ namespace ESportTeamControll.Controllers
             {
                 ent.User = user;
                 _service.Create(ent);
-                return RedirectToAction("SignIn", "Login");
+                return RedirectToAction("SignIn", "Login", ent.Id);
             }
             return View(ent);
         }
